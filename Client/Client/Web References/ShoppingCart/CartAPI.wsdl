@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="UpsertUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userDto" type="tns:UserDto" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UserDto">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Dto">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ID" nillable="true" type="s1:guid" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Dto">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Mode" type="tns:EnumCrudMode" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="EnumCrudMode">
+        <s:restriction base="s:string">
+          <s:enumeration value="Create" />
+          <s:enumeration value="Update" />
+          <s:enumeration value="Delete" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="UpsertUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpsertUserResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Result">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ResultCode" type="tns:EnumResultCode" />
+          <s:element minOccurs="0" maxOccurs="1" name="Details" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Dto" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="EnumResultCode">
+        <s:restriction base="s:string">
+          <s:enumeration value="OK" />
+          <s:enumeration value="Error" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="UpsertItem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="itemDto" type="tns:ItemDto" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ItemDto">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Dto">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ID" nillable="true" type="s1:guid" />
+              <s:element minOccurs="0" maxOccurs="1" name="ItemCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Price" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="Quantity" nillable="true" type="s:decimal" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="UpsertItemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpsertItemResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateNewCart">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userDto" type="tns:UserDto" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateNewCartResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateNewCartResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddItemToCart">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="itemDto" type="tns:ItemDto" />
+            <s:element minOccurs="0" maxOccurs="1" name="userDto" type="tns:UserDto" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddItemToCartResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddItemToCartResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCartItemNames">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userDto" type="tns:UserDto" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCartItemNamesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCartItemNamesResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="UpsertUserSoapIn">
+    <wsdl:part name="parameters" element="tns:UpsertUser" />
+  </wsdl:message>
+  <wsdl:message name="UpsertUserSoapOut">
+    <wsdl:part name="parameters" element="tns:UpsertUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpsertItemSoapIn">
+    <wsdl:part name="parameters" element="tns:UpsertItem" />
+  </wsdl:message>
+  <wsdl:message name="UpsertItemSoapOut">
+    <wsdl:part name="parameters" element="tns:UpsertItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewCartSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateNewCart" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewCartSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateNewCartResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddItemToCartSoapIn">
+    <wsdl:part name="parameters" element="tns:AddItemToCart" />
+  </wsdl:message>
+  <wsdl:message name="AddItemToCartSoapOut">
+    <wsdl:part name="parameters" element="tns:AddItemToCartResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCartItemNamesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCartItemNames" />
+  </wsdl:message>
+  <wsdl:message name="GetCartItemNamesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCartItemNamesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="CartAPISoap">
+    <wsdl:operation name="UpsertUser">
+      <wsdl:input message="tns:UpsertUserSoapIn" />
+      <wsdl:output message="tns:UpsertUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpsertItem">
+      <wsdl:input message="tns:UpsertItemSoapIn" />
+      <wsdl:output message="tns:UpsertItemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewCart">
+      <wsdl:input message="tns:CreateNewCartSoapIn" />
+      <wsdl:output message="tns:CreateNewCartSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddItemToCart">
+      <wsdl:input message="tns:AddItemToCartSoapIn" />
+      <wsdl:output message="tns:AddItemToCartSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCartItemNames">
+      <wsdl:input message="tns:GetCartItemNamesSoapIn" />
+      <wsdl:output message="tns:GetCartItemNamesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CartAPISoap" type="tns:CartAPISoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UpsertUser">
+      <soap:operation soapAction="http://tempuri.org/UpsertUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpsertItem">
+      <soap:operation soapAction="http://tempuri.org/UpsertItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewCart">
+      <soap:operation soapAction="http://tempuri.org/CreateNewCart" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddItemToCart">
+      <soap:operation soapAction="http://tempuri.org/AddItemToCart" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCartItemNames">
+      <soap:operation soapAction="http://tempuri.org/GetCartItemNames" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CartAPISoap12" type="tns:CartAPISoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UpsertUser">
+      <soap12:operation soapAction="http://tempuri.org/UpsertUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpsertItem">
+      <soap12:operation soapAction="http://tempuri.org/UpsertItem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewCart">
+      <soap12:operation soapAction="http://tempuri.org/CreateNewCart" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddItemToCart">
+      <soap12:operation soapAction="http://tempuri.org/AddItemToCart" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCartItemNames">
+      <soap12:operation soapAction="http://tempuri.org/GetCartItemNames" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CartAPI">
+    <wsdl:port name="CartAPISoap" binding="tns:CartAPISoap">
+      <soap:address location="http://localhost:50924/CartAPI.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CartAPISoap12" binding="tns:CartAPISoap12">
+      <soap12:address location="http://localhost:50924/CartAPI.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
