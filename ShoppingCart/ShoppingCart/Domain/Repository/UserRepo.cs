@@ -32,7 +32,6 @@ namespace ShoppingCart.Domain.Repository
 
             if (DBManager.userRepo.ContainsKey(userDto.Email))
                 return;
-            //    throw new Exception($@"Validation Exception: User with same email: {userDto.Email} already exists");
             
             var user = userDto.User();
             user.ID = DBManager.GenerateKey();
